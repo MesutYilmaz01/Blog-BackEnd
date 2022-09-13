@@ -6,7 +6,7 @@ services:
       dockerfile: ./dockerfile/php/Dockerfile
     ports:
       - "9080:8080"
-    container_name: phpserver
+    container_name: php-server
     volumes:
       - ./:/var/www
     networks:
