@@ -8,16 +8,23 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
+    unzip \
+    libcurl4-openssl-dev \
+    pkg-config \
+    libssl-dev \
+    # Install Mongo
+    && pecl install mongodb \
+    # Install PHP extensions
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    # To copy php.ini for mongo
+    && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
+            sed -i -e "s/^ *memory_limit.*/memory_limit = 128MB/g" /usr/local/etc/php/php.ini \
+    && echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini \
+    # Clear cache
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www
+

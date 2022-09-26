@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Contracts\IPostService;
+use App\Http\Services\PostService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //$this->app->bind(IUserService::class, UserService::class);
+        $this->app->bind(IPostService::class, PostService::class);
     }
 }

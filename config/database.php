@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,11 +93,20 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => env('DB_HOST', '192.168.2.6'),
+            'port' => env('DB_PORT', '27017'),
+            'database' => env('DB_DATABASE', 'blog'),
+            'username' => env('DB_USERNAME', 'admin'),
+            'password' => env('DB_PASSWORD', 'password'),
+    ],
+
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Migration Repository Table
+    | Migration Repositories Table
     |--------------------------------------------------------------------------
     |
     | This table keeps track of all the migrations that have already run for
