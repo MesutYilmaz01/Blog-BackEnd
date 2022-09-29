@@ -39,4 +39,21 @@ class PostService implements IPostService
     {
         return $this->postRepository->getById($slug);
     }
+
+    /**
+     * @return Collection
+     */
+    public function popularPosts(): Collection
+    {
+        return $this->postRepository->getAll();
+    }
+
+    /**
+     * @param int $limit
+     * @return Collection
+     */
+    public function getLatestPosts(int $limit): Collection
+    {
+        return $this->postRepository->getLatestPosts($limit);
+    }
 }

@@ -20,6 +20,6 @@ class Post extends Model
 
     public function commentCount()
     {
-        return$this->hasMany(Comment::class)->count();
+        return $this->hasMany(Comment::class)->count();
     }
 }

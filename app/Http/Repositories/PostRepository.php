@@ -26,4 +26,23 @@ class PostRepository
         return Post::query()->where('slug',$slug)->first();
     }
 
+    /**
+     * @return Collection
+     */
+    public function getAll(): Collection
+    {
+        return Post::all();
+    }
+
+    /**
+     * @param int $limit
+     * @return Collection
+     */
+    public function getLatestPosts(int $limit): Collection
+    {
+        return Post::all()->sortBy(function ($post) {
+            return $post->created_at;
+        })->reverse()->take($limit);
+    }
+
 }

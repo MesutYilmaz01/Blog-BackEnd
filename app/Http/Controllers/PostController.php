@@ -39,4 +39,26 @@ class PostController extends Controller
    {
        return new PostResource($this->postService->getById($slug));
    }
+
+    /**
+     * @return PostResource
+     */
+   public function popularPosts()
+   {
+       $sorted = $this->postService->popularPosts()->sortBy(function($post)
+       {
+           return $post->commentCount();
+       });
+
+       return PostResource::collection($sorted->splice($sorted->count()-3,3)->reverse());
+   }
+
+    /**
+     * @param int $limit
+     * @return PostResource
+     */
+   public function latestPosts(int $limit)
+   {
+       return PostResource::collection($this->postService->getLatestPosts($limit));
+   }
 }

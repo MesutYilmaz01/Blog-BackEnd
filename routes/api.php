@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/posts/{offset}', [PostController::class, 'getByOffset']);
 Route::get('/post/{id}', [PostController::class, 'getById']);
+Route::get('/popular-posts', [PostController::class, 'popularPosts']);
+Route::get('/latest-posts/{limit}', [PostController::class, 'latestPosts']);
 
 
 

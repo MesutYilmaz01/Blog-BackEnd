@@ -18,4 +18,15 @@ interface IPostService
      * @return Post|null
      */
     public function getById(string $slug): ?Post;
+
+    /**
+     * @return Collection
+     */
+    public function popularPosts(): Collection;
+
+    /**
+     * @param int $limit
+     * @return Collection
+     */
+    public function getLatestPosts(int $limit): Collection;
 }
