@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Http\Contracts\IPostService;
+use App\Http\Contracts\Web\IPostService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {

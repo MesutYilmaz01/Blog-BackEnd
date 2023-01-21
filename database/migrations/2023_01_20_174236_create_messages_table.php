@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->string('category_name');
-            $table->integer('subcategory')->nullable();
-            $table->string('link');
-            $table->boolean('activate')->default(0);
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('phone')->nullable();
+            $table->string('email');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('messages');
     }
 };

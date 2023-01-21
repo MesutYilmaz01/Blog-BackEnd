@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->foreignId('language_id')->constrained('languages')->cascadeOnDelete();
-            $table->string('tag_name');
-            $table->string('link');
-            $table->boolean('activate')->default(0);
+        Schema::create('images', function (Blueprint $table) {
+            $table->string('post_id')->constrained('posts')->cascadeOnDelete();
+            $table->string('image_type');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('images');
     }
 };

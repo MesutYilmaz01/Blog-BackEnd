@@ -8,6 +8,13 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'post_id',
+        'name_surname',
+        'email',
+        'comment'
+    ];
+
     protected $with = array('subComment');
 
 

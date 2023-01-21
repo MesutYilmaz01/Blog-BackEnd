@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Services\Web;
 
-use App\Http\Contracts\IPostService;
-use App\Http\Repositories\PostRepository;
+use App\Http\Contracts\Web\IPostService;
+use App\Http\Repositories\Web\PostRepository;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -49,11 +49,35 @@ class PostService implements IPostService
     }
 
     /**
+     * @param int $offset
      * @param int $limit
      * @return Collection
      */
-    public function getLatestPosts(int $limit): Collection
+    public function getLatestPosts(int $offset, int $limit): Collection
     {
-        return $this->postRepository->getLatestPosts($limit);
+        return $this->postRepository->getLatestPosts($offset, $limit);
     }
+
+    /**
+     * @param string $category
+     * @param int $offset
+     * @param int $limit
+     * @return Collection
+     */
+    public function getByCategory(string $category, int $offset, int $limit): Collection
+    {
+        return $this->postRepository->getByCategory($category, $offset, $limit);
+    }
+
+    /**
+     * @param string $word
+     * @param int $offset
+     * @param int $limit
+     * @return Collection
+     */
+    public function getBySearch(string $word, int $offset, int $limit): Collection
+    {
+        return $this->postRepository->getBySearch($word, $offset, $limit);
+    }
+
 }

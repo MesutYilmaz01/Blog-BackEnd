@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->foreignId('language_id')->constrained('languages')->cascadeOnDelete();
-            $table->string('tag_name');
+            $table->string('category_name');
             $table->string('link');
             $table->boolean('activate')->default(0);
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('categories');
     }
 };
